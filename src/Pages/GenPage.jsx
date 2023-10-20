@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import genService from '../Services/genService';
-import GenPokemons from '../Components/GenPokemons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
 import Pokemon from '../Components/Pokemons';
+import versionPokemon from '../Services/versionPokemon';
+
 
 const GenPokemonsPage = () => {
   const { generation } = useParams();
@@ -13,6 +14,11 @@ const GenPokemonsPage = () => {
   const fetchGenPokemons = async () => {
     try {
       const response = await genService.getGenById(generation);
+      response.data.pokemon_species.sort((firstItem, secondItem) =>
+                firstItem.url.substring(41).replaceAll("/", "") -
+                secondItem.url.substring(41).replaceAll("/", "")
+            )
+
       console.log(response)
       setPokemonList(response.data.pokemon_species);
     } catch (e) {
@@ -32,6 +38,5 @@ const GenPokemonsPage = () => {
     </div>
   );
 }
-  
 
 export default GenPokemonsPage;

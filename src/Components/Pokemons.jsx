@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import pokemonService from '../Services/pokemonService';
-import PokemonsDetails from './PokemonsDetails';
+import PokemonDetails from './PokemonsDetails';
 import '../App.css';
 
 const Pokemon = ({ pokemon }) => {
@@ -28,9 +28,9 @@ const Pokemon = ({ pokemon }) => {
 
   return (
     <div className='body'>
-      <div className={`Carte hover-glow ${showDetails ? 'centered' : ''}`} onClick={handleClick}>
+      <div id="shiny" className={`Carte hover-glo ${showDetails ? 'centered' : ''}`} onClick={handleClick}>
         {showDetails ? (
-          <PokemonsDetails pokemon={pokemon} />
+          <PokemonDetails pokemon={pokemon} />
         ) : (
           <div className='content'>
             <div className='titre'>

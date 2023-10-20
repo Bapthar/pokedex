@@ -4,10 +4,8 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-
 }
  
-/* CSS pour styliser la carte Pokémon */
 .Carte {
   position: relative;
   margin-top: 20px;
@@ -25,8 +23,13 @@ body {
   align-items: center;
   justify-content: center;
   margin: 40px;
-  
+  border: none;
+  padding: 10px 15px;
+  font-weight: bold;
+  cursor: pointer;
 }
+
+
 .Carte:hover {
   transform: scale(2);
   box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.94);
@@ -36,6 +39,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
 .Carte:hover {
   transform: scale(1.05);
   background-image: url(https://i.gifer.com/7HHr.gif);
@@ -55,8 +59,6 @@ body {
   border-top-right-radius: 10px;
 }
 
-
-
 .titre {
   padding: 10px;
   font-weight: bold;
@@ -64,18 +66,35 @@ body {
   color: #000000;
 }
 
-/* CSS pour l'effet brillant au passage de la souris */
 
-/* CSS pour le GIF en superposition */
-.Carte::after {
+.Carte:after {
   content: url('/Users/baptisteharbuz/Desktop/ForEach Academy/VS Code/REACT/Pokedex/pokedex/src/Shiny.gif');
   position: absolute;
   top: 0;
   left: 0;
+  background-blend-mode: overlay;
+  z-index: 2;
   width: 100%;
   height: 100%;
-  opacity: 0.5;
-  mix-blend-mode: screen;
+  filter: brightness(1) contrast(1);
+  top: calc(var(--y, 0) * 1px - 50px);
+  left: calc(var(--x, 0) * 1px - 50px);
+  background: radial-gradient(white, #3984ff00 80%);
+  opacity: 0;
+  transition: opacity 0.2s;
+  opacity: 0.75;
+  mix-blend-mode: color-dodge;
+}
+
+.recherche {
+  background: rgba(255, 255, 255, 0.39);
+  backdrop-filter: blur(17.3px);
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: #000000;
+  display: flex;
+  justify-content: center;
 }
 
 @keyframes shine {
@@ -91,22 +110,49 @@ body {
   display: flexbox;
   align-items: center;
   justify-content: center;
-
   width: 150px;
 }
 
-
 .nav {
+  background: rgba(255, 255, 255, 0.39);
   display: flexbox;
-  justify-content: space-between;
-  background: linear-gradient(rgba(0, 78, 141),rgb(248, 219, 0));
+  justify-content: center
+
 }
 
-.transparent-ice-background {
-  background: rgba(255, 255, 255, 0.5); /* Couleur de fond transparente */
-  backdrop-filter: blur(5px); /* Effet de glace (flou) */
-  padding: 0px; /* Espace intérieur pour le contenu */
-  border-radius: 10px; /* Coins arrondis pour l'effet de glace */
+.dropdown-menu{
+max-height: 300px;
+overflow: auto;
 }
+
+.dropdown-menu > .dropdown-item:hover {
+background-color: #fee400;
+  }
+
+/* .img.animated:before {
+    transition: none;
+    -webkit-animation: holoGradient 12s ease 0s 1;
+    animation: holoGradient 12s ease 0s 1;
+}
+.img:before {
+    background-position: 50% 50%;
+    background-size: 300% 300%;
+    background-image: linear-gradient(115deg, transparent 0%, var(--color1) 25%, transparent 47%, transparent 53%, var(--color2) 75%, transparent 100%);
+    opacity: 0.5;
+    filter: brightness(0.5) contrast(1);
+    z-index: 1;
+}
+.img:before, .img:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    mix-blend-mode: color-dodge;
+    transition: all 0.33s ease;
+} */
 
 
