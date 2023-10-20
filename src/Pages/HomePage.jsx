@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import Pokemon from '../Services/Pokemon';
+import pokemonService from '../Services/pokemonService';
 import Pokemons from '../Components/Pokemons';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../App.css';
 
 
-function HomePage() {
-  const [pokemon, setPokemon] = useState([]);
+const PokemonsHome = () => {
+  const [pokemons, setPokemons] = useState([]);
 
   const fetchPokemons = async () => {
     try{
-        const response = await Pokemon.getPokemons();
-        setPokemon(response.data.results)
+        const response = await pokemonService.getPokemons();
+        setPokemons(response.data.results)
     }catch (e){
         console.log(e)
     }
@@ -20,15 +21,16 @@ useEffect(() => {
   fetchPokemons()
 }, [])
 
-  return (
-    <div className={"d-flex justify-content-center gap-2"}>
-      <h1>Liste de Pokémon</h1>
-        {pokemon.map(pokemon =>{
-          return <Pokemons pokemon={pokemon}/>
+
+  return <>
+ 
+    <div className={"d-flex flex-wrap justify-content-center gap-2"}>
+        {pokemons.map(pokemon =>{ 
+          return <Pokemons key={pokemon.name} pokemon={pokemon}/>
         })}
       </div>
-
-  );
+      </>
+  ;
 }
 
-export default HomePage;
+export default PokemonsHome;
